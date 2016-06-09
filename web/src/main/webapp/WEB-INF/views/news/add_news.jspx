@@ -1,0 +1,43 @@
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns="http://www.w3.org/1999/xhtml" version="2.0"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+    <form action="${contextPath}/add/add" method="post">
+
+        <h4><fmt:message key="addNewsPage.header"/></h4><br/>
+
+        <c:if test="${param.isNotValidData}">
+            <p class="warning" style="color: red"> <fmt:message key="addNewsPage.notValidMessage"/></p>
+        </c:if>
+        <fmt:message key="addNewsPage.titleInputHeader"/><br/>
+
+        <div class="container">
+            <label title="hhhh">
+                <textarea class="text-area" name="header" cols="150" rows="2"><jsp:text />
+                </textarea>
+            </label>
+        </div>
+
+        <fmt:message key="addNewsPage.titleInputText"/><br/>
+
+        <div class="container">
+            <label title="ttttt">
+                <textarea class="text-area" name="textNews" cols="150" rows="8"><jsp:text />
+                </textarea>
+            </label>
+
+            <div class="menu">
+                <div class="rowButton">
+                    <input class="btn btn-info" type="reset" value="clear"/>
+                </div>
+
+                <div class="rowButton">
+                    <input class="btn btn-info" type="submit" name="save" value="Save"/>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</jsp:root>

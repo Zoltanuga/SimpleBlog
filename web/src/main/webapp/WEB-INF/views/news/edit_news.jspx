@@ -1,0 +1,35 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+    <form action="${contextPath}/edit/edit" method="post">
+    <input type="hidden" name="newsId" value="${currentNews.id}"/>
+    <h4><fmt:message key="editNewsPage.header"/> </h4><br/>
+
+    <c:if test="${param.isNotValidData}">
+        <p class="warning" style="color: red"> <fmt:message key="editNewsPage.notValidMessage"/> </p>
+    </c:if>
+    <fmt:message key="editNewsPage.titleInputHeader"/><br/>
+
+    <div class="container">
+        <textarea class="text-area" name="header" cols="200" rows="2">${currentNews.header}</textarea>
+    </div>
+
+    <fmt:message key="editNewsPage.titleInputText"/><br/>
+
+    <div class="container">
+        <textarea class="text-area" name="textNews" cols="200" rows="8">${currentNews.text}</textarea>
+        <div class="menu">
+            <div class="rowButton">
+                <input class="btn btn-info" type="reset" value="clear"/>
+            </div>
+
+            <div class="rowButton">
+                <input class="btn btn-info" type="submit" name="save" value="Save"/>
+            </div>
+        </div>
+    </div>
+    </form>
+</jsp:root>

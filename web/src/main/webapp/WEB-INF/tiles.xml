@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="default" template="/WEB-INF/views/layouts/default.jspx">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/WEB-INF/views/commons/header.jspx"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/commons/footer.jspx"/>
+    </definition>
+
+    <definition name="news" extends="default">
+        <put-attribute name="title" value="News"/>
+        <put-attribute name="body" value="/WEB-INF/views/news/news.jspx"/>
+    </definition>
+    <definition name="comments" extends="default">
+        <put-attribute name="title" value="Comments"/>
+        <put-attribute name="body" value="/WEB-INF/views/comments/comments.jspx"/>
+    </definition>
+    <definition name="login" extends="default">
+        <put-attribute name="title" value="Login Page"/>
+        <put-attribute name="body" value="/WEB-INF/views/login/login.jspx"/>
+    </definition>
+    <definition name="addNews" extends="default">
+        <put-attribute name="title" value="Add News Page"/>
+        <put-attribute name="body" value="/WEB-INF/views/news/add_news.jspx"/>
+    </definition>
+    <definition name="editNews" extends="default">
+        <put-attribute name="title" value="Edit News Page"/>
+        <put-attribute name="body" value="/WEB-INF/views/news/edit_news.jspx"/>
+    </definition>
+
+    <definition name="addComment" extends="default">
+        <put-attribute name="title" value="Add Comment Page"/>
+        <put-attribute name="body" value="/WEB-INF/views/comments/add_comment.jspx"/>
+    </definition>
+    <definition name="editComment" extends="default">
+        <put-attribute name="title" value="Add Comment Page"/>
+        <put-attribute name="body" value="/WEB-INF/views/comments/edit_comment.jspx"/>
+    </definition>
+    <definition name="register" extends="default">
+        <put-attribute name="title" value="Register Page"/>
+        <put-attribute name="body" value="/WEB-INF/views/register/register.jspx"/>
+    </definition>
+    <definition name="error" extends="default">
+        <put-attribute name="title" value="Register Page"/>
+        <put-attribute name="body" value="/WEB-INF/views/error/error.jspx"/>
+    </definition>
+</tiles-definitions>
+

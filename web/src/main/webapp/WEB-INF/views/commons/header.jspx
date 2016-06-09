@@ -1,0 +1,81 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:sec="http://www.springframework.org/security/tags"
+          version="2.0" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+    <header>
+        <div class="header">
+            <div class="row logo">
+                <img src="${contextPath}/assets/images/logo1.gif"/>
+            </div>
+
+            <div class="row welcome">
+
+                <sec:authorize ifAnyGranted="ROLE_MODERATOR, ROLE_MEMBER">
+                    <span><fmt:message key="main.welcome"/>${'  '} <sec:authentication
+                            property="principal.name"/>${'  '}
+                        <sec:authentication property="principal.surname"/></span>
+
+                </sec:authorize>
+                <sec:authorize ifNotGranted="ROLE_MODERATOR, ROLE_MEMBER">
+                    <span><fmt:message key="main.welcomeDefault"/></span>
+
+                </sec:authorize>
+                <!-- <sec:authorize access="hasRole('MODERATOR')">
+
+                     <span>Hello, <sec:authentication property="principal.username"/></span>
+                     <sec:authentication property="principal"/>
+                 </sec:authorize>
+                 <sec:authorize access="hasRole('MEMBER')">
+
+                     <span>Hello, <sec:authentication property="principal.username"/></span>
+
+                 </sec:authorize>-->
+            </div>
+
+            <div class="row login">
+                <!--   <spring:message code="locale.change" var="changeLocale" htmlEscape="true"/>
+                   <c:url var="locale" value="/news?locale=${changeLocale}"/>
+                  <a href="${locale}">Locale</a>
+   -->
+
+                <h4><a href="?locale=en_US">English</a></h4>${'   '}
+                <h4><a href="?locale=ru_RU">Russian</a></h4>${'   '}
+
+                <sec:authorize ifNotGranted=" ROLE_MEMBER, ROLE_MODERATOR">
+                    <h4><a href="${contextPath}/login"><fmt:message key="header.login"/></a></h4>${'   '}
+                    <a href="${contextPath}/register">
+                        <h4><fmt:message key="header.ref"/></h4></a>
+                </sec:authorize>
+                <sec:authorize ifAnyGranted=" ROLE_MEMBER, ROLE_MODERATOR">
+                   <h4> <a href="${contextPath}/logout"> <fmt:message key="header.logout"/></a></h4>${'   '}
+                </sec:authorize>
+                <!--<sec:authorize ifNotGranted=" ROLE_MEMBER, ROLE_MODERATOR">
+                    <form action="/news/login" method="post">
+
+                        <input class="form-control" type="email" name="userName" placeholder="email"/>
+
+                        <div class="input-group">
+                            <input class="form-control" type="password" name="userPassword" pattern="[a-zA-Z0-9]{3}"
+                                   placeholder="password"/>
+                <span class="input-group-btn">
+                     <input class="btn btn-info" type="submit" name="login" value="log in"/>
+                 </span>
+                        </div>
+
+                    </form>
+                    <a href="/register">
+                        <h4><fmt:message key="main.ref"/></h4></a>
+                </sec:authorize>
+
+                <sec:authorize ifAnyGranted=" ROLE_MEMBER, ROLE_MODERATOR">
+                    <form  method="post">
+                        <input class="btn btn-info" type="submit" name="logout" value="log out"/>
+                    </form>
+                </sec:authorize>-->
+            </div>
+        </div>
+    </header>
+</jsp:root>

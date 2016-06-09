@@ -1,0 +1,110 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:tg="urn:jsptagdir:/WEB-INF/tags"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:sec="http://www.springframework.org/security/tags">
+
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+    <jsp:useBean id="pagedListHolder" scope="request" type="org.springframework.beans.support.PagedListHolder"/>
+    <c:url value="/comments/paging" var="pagedLink">
+        <c:param name="action" value="list"/>
+        <c:param name="newsId" value="${newsId}"/>
+        <c:param name="p" value="~"/>
+    </c:url>
+    <script language="JavaScript">
+        function validForm(f) {
+            f.submit()
+        }
+    </script>
+
+    <c:if test="${param.successComment==true}"><p style="color: blue"><fmt:message
+            key="commentsPage.addOrEditSuccessMessage"/></p>
+    </c:if>
+    <c:if test="${param.errorComment==true}"><p style="color: red"><fmt:message
+            key="commentsPage.addOrEditErrorMessage"/></p></c:if>
+    <c:if test="${param.successDelete==true}"><p style="color: blue"><fmt:message
+            key="commentsPage.deleteSuccessMessage"/></p></c:if>
+    <c:if test="${param.errorDelete==true}"><p style="color: red"><fmt:message
+            key="commentsPage.deleteErrorMessage"/></p></c:if>
+
+    <div class=".menu">
+        <div class="rowButton">
+            <form action="${contextPath}" method="post">
+                <input class="btn btn-info" type="submit" value="to news page"/>
+            </form>
+        </div>
+        <div class="rowButton">
+            <form action="${contextPath}/comments/add" onsubmit="return false">
+                <input type="hidden" name="newsId" value="${newsId}"/>
+                <sec:authorize ifAnyGranted=" ROLE_MEMBER, ROLE_MODERATOR">
+                    <input class="btn btn-info" type="button" value="add" onClick="validForm(this.form)"/>
+                </sec:authorize>
+            </form>
+        </div>
+    </div>
+
+    <!-- <div class="container text-left ">
+        <div style="display:inline">
+           <c:forEach items="${pageOrder}" var="numberPage">
+              <div style="float:left">
+                 <form action="Controller" method="post" onSubmit="return false">
+                    <input type="hidden" name="totalPages" value="${totalPages}"/>
+                    <input type="hidden" name="sort" value="${sort}"/>
+                    <input type="hidden" name="itemsPerPage" value="${itemsPerPage}"/>
+                    <input type="hidden" name="currentPage" value="${numberPage}"/>
+                    <input type="hidden" name="command" value="list_news/">
+                    <c:choose><c:when test="${currentPage != numberPage}">
+                       <input type="button" class="button btn btn-info" id="${numberPage}" value="${numberPage}"
+                              onClick="validForm(this.form)"></c:when>
+                       <c:otherwise> <input type="button" class="button btn btn-info" id="${numberPage}"
+                                            value="${numberPage}"
+                                            onClick="validForm(this.form) " disabled></c:otherwise></c:choose>
+                 </form>
+              </div>
+           </c:forEach>
+        </div>
+     </div>-->
+
+    <div align="center"><tg:paging pagedListHolder="${pagedListHolder}" pagedLink="${pagedLink}"/></div>
+
+    <div class="table">
+        <c:forEach items="${pagedListHolder.pageList}" var="comment">
+            <div class="table-row">
+                <div class="table-cell content">${comment.content}</div>
+
+                <div class="table-cell head"><h3>${comment.user.name}</h3>
+
+                    <h3>${comment.user.surname}</h3>
+
+                    <div class="rowButton">
+                        <form action="${contextPath}/comments/edit" onSubmit="return false">
+                            <input type="hidden" name="newsId" value="${newsId}"/>
+                            <input type="hidden" name="commentId" value="${comment.commentId}"/>
+                            <sec:authorize access="hasRole('MODERATOR')">
+                                <input type="button" class="button btn btn-default" id="${comment.commentId}"
+                                       value="edit"
+                                       onClick="validForm(this.form)"/>
+                            </sec:authorize>
+                        </form>
+                    </div>
+                    <div class="rowButton">
+                        <form action="${contextPath}/comments/delete" method="post" onSubmit="return false">
+                            <input type="hidden" name="newsId" value="${newsId}"/>
+                            <input type="hidden" name="commentId" value="${comment.commentId}"/>
+                            <sec:authorize access="hasRole('MODERATOR')">
+
+                                <input type="button" class="button btn btn-default" id="${comment.commentId}"
+                                       value="delete"
+                                       onClick="validForm(this.form)"/>
+                            </sec:authorize>
+                        </form>
+                    </div>
+                    <br/>
+                    <i>${comment.date}</i>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
+
+</jsp:root>

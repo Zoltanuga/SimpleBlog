@@ -1,0 +1,140 @@
+/* Pagination
+---------------------------------------- */
+.pagingItem {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	/*font-weight: normal;
+	text-decoration: none;
+	color: #747474;
+	margin: 0 2px;
+	padding: 0 2px;
+	background-color: #eeeeee;
+	border: 1px solid #bababa;
+	font-size: 0.9em;
+	line-height: 1.5em;*/
+}
+.pagingItem:focus,
+.pagingItem:active:focus,
+.pagingItem.active:focus,
+.pagingItem.focus,
+.pagingItem:active.focus,
+.pagingItem.active.focus {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+.pagingItem:hover,
+.pagingItem:focus,
+.pagingItem.focus {
+	color: #333;
+	text-decoration: none;
+}
+.pagingItem:active,
+.pagingItem.active {
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.pagingItem.disabled,
+.pagingItem[disabled],
+fieldset[disabled] .btn {
+	pointer-events: none;
+	cursor: not-allowed;
+	filter: alpha(opacity=65);
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	opacity: .65;
+}
+
+/*
+.pagingItemCurrent {
+	padding: 0 2px;
+	margin: 0 2px;
+	font-weight: normal;
+	color: #FFFFFF;
+	background-color: #bfbfbf;
+	border: 1px solid #bfbfbf;
+	font-size: 0.9em;
+}
+*/
+
+
+.pagingItemCurrent {
+	color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da;
+}
+.pagingItemCurrent:hover,
+.pagingItemCurrent:focus,
+.pagingItemCurrent.focus,
+.pagingItemCurrent:active,
+.pagingItemCurrent.active,
+.open > .dropdown-toggle.pagingItemCurrent {
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+}
+.pagingItemCurrent:active,
+.pagingItemCurrent.active,
+.open > .dropdown-toggle.pagingItemCurrent {
+	background-image: none;
+}
+.pagingItemCurrent.disabled,
+.pagingItemCurrent[disabled],
+fieldset[disabled] .pagingItemCurrent,
+.pagingItemCurrent.disabled:hover,
+.pagingItemCurrent[disabled]:hover,
+fieldset[disabled] .btn-info:hover,
+.pagingItemCurrent.disabled:focus,
+.pagingItemCurrent[disabled]:focus,
+fieldset[disabled] .pagingItemCurrent:focus,
+.pagingItemCurrent.disabled.focus,
+.pagingItemCurrent[disabled].focus,
+fieldset[disabled] .pagingItemCurrent.focus,
+.pagingItemCurrent.disabled:active,
+.pagingItemCurrent[disabled]:active,
+fieldset[disabled] .pagingItemCurrent:active,
+.pagingItemCurrent.disabled.active,
+.pagingItemCurrent[disabled].active,
+fieldset[disabled] .pagingItemCurrent.active {
+	background-color: #5bc0de;
+	border-color: #46b8da;
+}
+.pagingItemCurrent .badge {
+	color: #5bc0de;
+	background-color: #fff;
+}
+
+
+.pagingDots {
+	font-weight: normal;
+}
+
+.pagination span a:hover {
+	border-color: #d2d2d2;
+	background-color: #d2d2d2;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.pagination img {
+	vertical-align: middle;
+}
